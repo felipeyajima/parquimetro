@@ -29,6 +29,11 @@ public class VeiculoController {
         return this.veiculoService.criar(veiculo);
     }
 
+    @GetMapping("/placa/{placa}")
+    public Veiculo obterPorPlaca(@PathVariable String placa){
+        return this.veiculoService.obterPorPlaca(placa);
+    }
+
 
 
 }

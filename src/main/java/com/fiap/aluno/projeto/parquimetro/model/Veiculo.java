@@ -2,11 +2,10 @@ package com.fiap.aluno.projeto.parquimetro.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-
-
 @Data //Estamos fazendo uso do Lombok, permite com que o encapsulamento seja utilizado nessa classe, e de forma invisivel, todos os getters e setters sejam permitidos para uso em relacao as propriedades abaixo
 // disponibiliza um get e set para cada uma das propriedas de forma invisivel
 public class Veiculo {
@@ -18,5 +17,7 @@ public class Veiculo {
     private String cor;
     private String anoDeFabricacao;
     private String chassi;
-    private Bilhete ultimoBilheteValido;
+
+    //@DBRef // permite a referencia de uma collection dentro da outra
+    //private String ultimoBilheteValido;
 }

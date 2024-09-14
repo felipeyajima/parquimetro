@@ -13,6 +13,7 @@ public class BilheteController {
 
     @Autowired
     private BilheteService bilheteService;
+
     @GetMapping
     public List<Bilhete> obterTodos(){
         return this.bilheteService.obterTodos();
@@ -25,7 +26,7 @@ public class BilheteController {
 
     @PostMapping
     public Bilhete criar(@RequestBody Bilhete bilhete){
-        return this.criar(bilhete);
+        return this.bilheteService.criar(bilhete);
     }
 
 
