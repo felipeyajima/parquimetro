@@ -7,7 +7,7 @@ import java.util.List;
 public interface BilheteService {
 
     public List<Bilhete> obterTodos();
-    public Bilhete obterPorCodigo();
-    public Bilhete criar();
+    public Bilhete obterPorCodigo(String codigo);
+    public Bilhete criar(Bilhete bilhete);
 
 }

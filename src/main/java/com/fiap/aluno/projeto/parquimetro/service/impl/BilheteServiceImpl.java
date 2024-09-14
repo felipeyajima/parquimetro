@@ -16,16 +16,20 @@ public class BilheteServiceImpl implements BilheteService {
 
     @Override
     public List<Bilhete> obterTodos() {
-        return null;
+        return this.bilheteRepository.findAll();
     }
 
     @Override
-    public Bilhete obterPorCodigo() {
-        return null;
+    public Bilhete obterPorCodigo(String codigo) {
+
+        return this.bilheteRepository
+                .findById(codigo)
+                .orElseThrow(()-> new IllegalArgumentException("bilhete não existe"));
     }
 
     @Override
-    public Bilhete criar() {
-        return null;
+    public Bilhete criar(Bilhete bilhete) {
+
+        return this.bilheteRepository.save(bilhete);
     }
 }

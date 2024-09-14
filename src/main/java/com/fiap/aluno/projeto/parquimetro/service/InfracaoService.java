@@ -7,6 +7,6 @@ import java.util.List;
 public interface InfracaoService {
 
     public List<Infracao>  obterTodos();
-    public Infracao obterPorCodigo();
-    public Infracao criar();
+    public Infracao obterPorCodigo(String codigo);
+    public Infracao criar(Infracao infracao);
 }

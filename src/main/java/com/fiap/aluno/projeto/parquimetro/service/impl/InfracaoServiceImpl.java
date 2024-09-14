@@ -15,16 +15,18 @@ public class InfracaoServiceImpl implements InfracaoService {
 
     @Override
     public List<Infracao> obterTodos() {
-        return null;
+        return this.infracaoRepository.findAll();
     }
 
     @Override
-    public Infracao obterPorCodigo() {
-        return null;
+    public Infracao obterPorCodigo(String codigo) {
+        return this.infracaoRepository
+                .findById(codigo)
+                .orElseThrow(()-> new IllegalArgumentException("Infracao não existe"));
     }
 
     @Override
-    public Infracao criar() {
-        return null;
+    public Infracao criar(Infracao infracao) {
+        return this.infracaoRepository.save(infracao);
     }
 }

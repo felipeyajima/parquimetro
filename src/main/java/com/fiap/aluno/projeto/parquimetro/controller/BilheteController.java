@@ -1,6 +1,8 @@
 package com.fiap.aluno.projeto.parquimetro.controller;
 
 import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
+import com.fiap.aluno.projeto.parquimetro.service.BilheteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +11,21 @@ import java.util.List;
 @RequestMapping(value = "/bilhetes")
 public class BilheteController {
 
+    @Autowired
+    private BilheteService bilheteService;
     @GetMapping
     public List<Bilhete> obterTodos(){
-        return null;
+        return this.bilheteService.obterTodos();
     }
 
     @GetMapping("/{codigo}")
     public Bilhete obterPorCodigo(@PathVariable String codigo){
-        return null;
+        return this.bilheteService.obterPorCodigo(codigo);
     }
 
     @PostMapping
     public Bilhete criar(@RequestBody Bilhete bilhete){
-        return null;
+        return this.criar(bilhete);
     }
 
 

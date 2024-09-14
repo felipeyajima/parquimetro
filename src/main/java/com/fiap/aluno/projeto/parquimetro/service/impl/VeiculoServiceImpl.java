@@ -16,16 +16,18 @@ public class VeiculoServiceImpl implements VeiculoService {
 
     @Override
     public List<Veiculo> obterTodos() {
-        return null;
+        return this.veiculoRepository.findAll();
     }
 
     @Override
     public Veiculo obterPorCodigo(String codigo) {
-        return null;
+        return this.veiculoRepository
+                .findById(codigo)
+                .orElseThrow(()-> new IllegalArgumentException("Veiculo não existe"));
     }
 
     @Override
     public Veiculo criar(Veiculo veiculo) {
-        return null;
+        return this.veiculoRepository.save(veiculo);
     }
 }
