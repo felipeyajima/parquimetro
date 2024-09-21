@@ -29,6 +29,11 @@ public class BilheteController {
         return this.bilheteService.criar(bilhete);
     }
 
+    @GetMapping("/ultimobilheteporplaca")
+    public List<Bilhete> LastfindedByPlaca(@RequestParam("id") String id ){
+        return this.bilheteService.buscaUltimoBilhetePorCarro(id);
+    }
+
 
 
 }

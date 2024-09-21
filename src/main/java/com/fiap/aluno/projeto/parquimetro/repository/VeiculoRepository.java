@@ -9,4 +9,7 @@ public interface VeiculoRepository extends MongoRepository<Veiculo, String> {
     @Query("{ 'placa' : ?0 }")
     Veiculo findByPlaca(String placa);
 
+    @Query(value="{ 'placa' : ?0 }",fields="{ 'placa' : 1, 'cor' : 1}")
+    Veiculo findByPlacaWithoutRest(String placa);
+
 }

@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface VeiculoService {
     public List<Veiculo> obterTodos();
-    public Veiculo obterPorCodigo(String codigo);
     public Veiculo criar(Veiculo veiculo);
     public Veiculo obterPorPlaca(String placa);
 

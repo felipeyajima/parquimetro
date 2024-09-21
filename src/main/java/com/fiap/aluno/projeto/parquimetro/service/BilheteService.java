@@ -10,4 +10,6 @@ public interface BilheteService {
     public Bilhete obterPorCodigo(String codigo);
     public Bilhete criar(Bilhete bilhete);
 
+    public List<Bilhete> buscaUltimoBilhetePorCarro(String placa);
+
 }
