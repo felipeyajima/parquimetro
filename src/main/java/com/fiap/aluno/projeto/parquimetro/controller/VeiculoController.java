@@ -29,6 +29,14 @@ public class VeiculoController {
         return this.veiculoService.criar(veiculo);
     }
 
+    @PutMapping
+    public void atualizar(@RequestBody Veiculo veiculo){
+        this.veiculoService.atualizar(veiculo);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteVeiculo(@PathVariable String id){
+        this.veiculoService.deleteById(id);
+    }
 
 }

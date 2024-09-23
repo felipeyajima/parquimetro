@@ -55,11 +55,11 @@ public class BilheteServiceImpl implements BilheteService {
 
         if(veiculo != null){
             // se o retorno acima for um veiculo existente, atrele ao bilhete
-            veiculoExistente = true;
+            //veiculoExistente = true;
             bilhete.setVeiculo(veiculo);
 
         } else {
-            veiculoExistente = false;
+            //veiculoExistente = false;
             // senao, crie um veiculo pois nao atualizamos com as informacoes atualizadas do departamento de transito para veiculo novos
             Veiculo veiculo1 = new Veiculo();
             veiculo1.setPlaca(bilhete.getVeiculo().getPlaca());
@@ -76,15 +76,20 @@ public class BilheteServiceImpl implements BilheteService {
         this.veiculoService.criar(veiculo2);
 
 
-
         return obj;
     }
 
     @Override
-    public List<Bilhete> buscaUltimoBilhetePorCarro(String id){
-        Query query = new Query(Criteria.where("veiculo.id").is(id));
-        return mongoTemplate.find(query, Bilhete.class);
+    public void atualizar(Bilhete updateBilhete){
+        this.bilheteRepository.save(updateBilhete);
     }
+
+    @Override
+    public void deleteById(String codigo){
+        Query query = new Query(Criteria.where("codigo").is(codigo));
+        mongoTemplate.remove(query, Bilhete.class);
+    }
+
 
 
 }

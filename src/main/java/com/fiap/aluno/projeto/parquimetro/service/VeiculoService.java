@@ -10,4 +10,8 @@ public interface VeiculoService {
     public Veiculo criar(Veiculo veiculo);
     public Veiculo obterPorPlaca(String placa);
 
+    public void atualizar(Veiculo veiculo);
+
+    public void deleteById(String placa);
+
 }

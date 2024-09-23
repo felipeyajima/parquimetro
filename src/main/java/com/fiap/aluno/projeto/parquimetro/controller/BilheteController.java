@@ -29,11 +29,21 @@ public class BilheteController {
         return this.bilheteService.criar(bilhete);
     }
 
-    @GetMapping("/ultimobilheteporplaca")
-    public List<Bilhete> LastfindedByPlaca(@RequestParam("id") String id ){
-        return this.bilheteService.buscaUltimoBilhetePorCarro(id);
+    @PutMapping
+    public void atualizar(@RequestBody Bilhete bilhete){
+        this.bilheteService.atualizar(bilhete);
     }
 
 
+
+    //@GetMapping("/ultimobilheteporplaca/{id}")
+    //public List<Bilhete> LastfindedByPlaca(@RequestParam("id") String id ){
+    //    return this.bilheteService.buscaUltimoBilhetePorCarro(id);
+    //}
+
+    @DeleteMapping("/{codigo}")
+    public void deleteBilhete(@PathVariable String codigo){
+        this.bilheteService.deleteById(codigo);
+    }
 
 }
