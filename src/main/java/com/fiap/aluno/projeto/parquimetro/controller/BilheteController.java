@@ -5,6 +5,7 @@ import com.fiap.aluno.projeto.parquimetro.service.BilheteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,15 @@ public class BilheteController {
     @DeleteMapping("/{codigo}")
     public void deleteBilhete(@PathVariable String codigo){
         this.bilheteService.deleteById(codigo);
+    }
+
+
+    @GetMapping("/bilhetesexpirando")
+    public List<Bilhete> obterBilhetesPrestesAExpirar(
+            @RequestParam("de") LocalDateTime de,
+            @RequestParam("ate") LocalDateTime ate
+    ){
+        return this.bilheteService.obterBilhetesPrestesAExpirar(de, ate);
     }
 
 }

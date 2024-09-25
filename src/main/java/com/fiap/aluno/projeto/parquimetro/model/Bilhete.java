@@ -19,7 +19,7 @@ public class Bilhete {
     @DBRef // permite a referencia de uma collection dentro da outra
     private Veiculo veiculo;
     private LocalDateTime bilheteCompradoEm;
-    private int quatidadeDeHorasAdquiridas;
+    private int quantidadeDeHorasAdquiridas;
     private String cpfDoCliente;
     private String numeroDeTelefoneDoCliente;
 

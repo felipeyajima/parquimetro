@@ -90,6 +90,16 @@ public class BilheteServiceImpl implements BilheteService {
         mongoTemplate.remove(query, Bilhete.class);
     }
 
+    // estamos utilizando uma nova forma de consulta utilizando Query Methods
+    @Override
+    public Bilhete findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(String placa, LocalDateTime data){
+        return this.bilheteRepository.findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(placa, data);
+    }
+
+    @Override
+    public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate){
+        return this.bilheteRepository.obterBilhetesPrestesAExpirar(de, ate);
+    }
 
 
 }

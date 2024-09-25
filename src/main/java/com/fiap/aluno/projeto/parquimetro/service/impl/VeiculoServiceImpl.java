@@ -1,5 +1,6 @@
 package com.fiap.aluno.projeto.parquimetro.service.impl;
 
+import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
 import com.fiap.aluno.projeto.parquimetro.model.Veiculo;
 import com.fiap.aluno.projeto.parquimetro.repository.BilheteRepository;
 import com.fiap.aluno.projeto.parquimetro.repository.VeiculoRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
