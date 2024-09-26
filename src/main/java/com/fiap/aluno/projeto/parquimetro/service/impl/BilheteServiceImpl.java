@@ -101,5 +101,21 @@ public class BilheteServiceImpl implements BilheteService {
         return this.bilheteRepository.obterBilhetesPrestesAExpirar(de, ate);
     }
 
+    // Usando Pesquisa Dinâmica, muito utilizado no mercado de trabalho
+    /*@Override
+    public List<Bilhete> encontrarBilhetesPesquisaDinamica(Integer quantidadeDeHorasAdquiridas,
+                                                           LocalDateTime data){
+        Criteria criteria = new Criteria();
+        // filtrar bilhetes igual ao valor fornecido
+        criteria.and("bilheteCompradoEm").lte(data);
+
+        if(quantidadeDeHorasAdquiridas !=null){
+            criteria.and("quantidadeDeHorasAdquiridas").is(quantidadeDeHorasAdquiridas);
+        }
+
+        Query query = new Query(criteria);
+        return mongoTemplate.find(query, Bilhete.class);
+
+    }*/
 
 }

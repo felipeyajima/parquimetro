@@ -56,4 +56,13 @@ public class BilheteController {
         return this.bilheteService.obterBilhetesPrestesAExpirar(de, ate);
     }
 
+    /* PESQUISA DINAMICA COM MONGODB - MUITO UTILIZADO NO MERCADO
+    @GetMapping("/bilhetepesquisadinamica")
+    public List<Bilhete> encontrarBilhetesPesquisaDinamica(
+            @RequestParam Integer quantidadeDeHorasAdquiridas,
+            @RequestParam LocalDateTime data
+    ){
+        return this.bilheteService.encontrarBilhetesPesquisaDinamica(quantidadeDeHorasAdquiridas, data);
+    }*/
+
 }

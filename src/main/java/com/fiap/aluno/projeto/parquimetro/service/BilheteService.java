@@ -18,4 +18,7 @@ public interface BilheteService {
     public Bilhete findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(String placa, LocalDateTime data);
 
     public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate);
+
+    //public List<Bilhete> encontrarBilhetesPesquisaDinamica(Integer quantidadeDeHorasAdquiridas,
+    //                                                       LocalDateTime data);
 }
