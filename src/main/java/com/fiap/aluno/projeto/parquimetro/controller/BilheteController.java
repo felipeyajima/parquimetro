@@ -3,6 +3,9 @@ package com.fiap.aluno.projeto.parquimetro.controller;
 import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
 import com.fiap.aluno.projeto.parquimetro.service.BilheteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -54,6 +57,17 @@ public class BilheteController {
             @RequestParam("ate") LocalDateTime ate
     ){
         return this.bilheteService.obterBilhetesPrestesAExpirar(de, ate);
+    }
+
+    @GetMapping("/pagina-bilhetes")
+    public ResponseEntity<Page<Bilhete>> obterBilhetesPaginados(Pageable pageable){
+        Page<Bilhete> bilhetes = this.bilheteService.obterBilhetesPaginados(pageable);
+        return ResponseEntity.ok(bilhetes);
+    }
+
+    @GetMapping("/bilhetes-ordenados-data")
+    public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(@RequestParam("cpf") String cpfDoCliente){
+        return this.bilheteService.findByCpfDoClienteOrderByBilheteCompradoEmAsc(cpfDoCliente);
     }
 
     /* PESQUISA DINAMICA COM MONGODB - MUITO UTILIZADO NO MERCADO

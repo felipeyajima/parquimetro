@@ -1,6 +1,8 @@
 package com.fiap.aluno.projeto.parquimetro.repository;
 
 import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -24,5 +26,10 @@ public interface BilheteRepository extends MongoRepository<Bilhete, String> {
     // query igual do mongodb pelo spring data
     @Query("{ $and: [ {'bilheteCompradoEm': { $gte: ?0}}, {'bilheteCompradoEm': { $lte: ?1}} ] }")
     public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate);
+
+
+    Page<Bilhete> findAll(Pageable pageable);
+
+    public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(String cpfDoCliente);
 
 }

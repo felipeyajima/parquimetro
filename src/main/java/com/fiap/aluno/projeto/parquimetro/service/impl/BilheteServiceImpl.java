@@ -6,6 +6,8 @@ import com.fiap.aluno.projeto.parquimetro.repository.BilheteRepository;
 import com.fiap.aluno.projeto.parquimetro.repository.VeiculoRepository;
 import com.fiap.aluno.projeto.parquimetro.service.BilheteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -100,6 +102,17 @@ public class BilheteServiceImpl implements BilheteService {
     public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate){
         return this.bilheteRepository.obterBilhetesPrestesAExpirar(de, ate);
     }
+
+    @Override
+    public Page<Bilhete> obterBilhetesPaginados(Pageable pageable) {
+        return this.bilheteRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(String cpfDoCliente) {
+        return this.bilheteRepository.findByCpfDoClienteOrderByBilheteCompradoEmAsc(cpfDoCliente);
+    }
+
 
     // Usando Pesquisa Dinâmica, muito utilizado no mercado de trabalho
     /*@Override
