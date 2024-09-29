@@ -35,8 +35,8 @@ public class BilheteServiceImpl implements BilheteService {
 
 
     @Override
-    public List<Bilhete> obterTodos() {
-        return this.bilheteRepository.findAll();
+    public Page<Bilhete> findAll(Pageable pageable) {
+        return this.bilheteRepository.findAll(pageable);
     }
 
     @Override
@@ -103,10 +103,6 @@ public class BilheteServiceImpl implements BilheteService {
         return this.bilheteRepository.obterBilhetesPrestesAExpirar(de, ate);
     }
 
-    @Override
-    public Page<Bilhete> obterBilhetesPaginados(Pageable pageable) {
-        return this.bilheteRepository.findAll(pageable);
-    }
 
     @Override
     public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(String cpfDoCliente) {

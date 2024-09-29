@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BilheteService {
 
-    public List<Bilhete> obterTodos();
+    Page<Bilhete> findAll(Pageable pageable);
     public Bilhete obterPorCodigo(String codigo);
     public Bilhete criar(Bilhete bilhete);
 
@@ -20,8 +20,6 @@ public interface BilheteService {
     public Bilhete findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(String placa, LocalDateTime data);
 
     public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate);
-
-    Page<Bilhete> obterBilhetesPaginados(Pageable pageable);
 
     public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(String cpfDoCliente);
 

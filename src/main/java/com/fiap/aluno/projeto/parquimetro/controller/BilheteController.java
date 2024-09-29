@@ -18,9 +18,11 @@ public class BilheteController {
     @Autowired
     private BilheteService bilheteService;
 
+
     @GetMapping
-    public List<Bilhete> obterTodos(){
-        return this.bilheteService.obterTodos();
+    public ResponseEntity<Page<Bilhete>> findAll(Pageable pageable){
+        Page<Bilhete> bilhetes = this.bilheteService.findAll(pageable);
+        return ResponseEntity.ok(bilhetes);
     }
 
     @GetMapping("/{codigo}")
@@ -37,13 +39,7 @@ public class BilheteController {
     public void atualizar(@RequestBody Bilhete bilhete){
         this.bilheteService.atualizar(bilhete);
     }
-
-
-
-    //@GetMapping("/ultimobilheteporplaca/{id}")
-    //public List<Bilhete> LastfindedByPlaca(@RequestParam("id") String id ){
-    //    return this.bilheteService.buscaUltimoBilhetePorCarro(id);
-    //}
+    
 
     @DeleteMapping("/{codigo}")
     public void deleteBilhete(@PathVariable String codigo){
@@ -59,11 +55,6 @@ public class BilheteController {
         return this.bilheteService.obterBilhetesPrestesAExpirar(de, ate);
     }
 
-    @GetMapping("/pagina-bilhetes")
-    public ResponseEntity<Page<Bilhete>> obterBilhetesPaginados(Pageable pageable){
-        Page<Bilhete> bilhetes = this.bilheteService.obterBilhetesPaginados(pageable);
-        return ResponseEntity.ok(bilhetes);
-    }
 
     @GetMapping("/bilhetes-ordenados-data")
     public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(@RequestParam("cpf") String cpfDoCliente){
@@ -78,5 +69,11 @@ public class BilheteController {
     ){
         return this.bilheteService.encontrarBilhetesPesquisaDinamica(quantidadeDeHorasAdquiridas, data);
     }*/
+
+
+    //@GetMapping("/ultimobilheteporplaca/{id}")
+    //public List<Bilhete> LastfindedByPlaca(@RequestParam("id") String id ){
+    //    return this.bilheteService.buscaUltimoBilhetePorCarro(id);
+    //}
 
 }

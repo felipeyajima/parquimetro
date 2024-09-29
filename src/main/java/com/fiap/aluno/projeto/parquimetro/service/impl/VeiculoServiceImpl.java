@@ -6,6 +6,8 @@ import com.fiap.aluno.projeto.parquimetro.repository.BilheteRepository;
 import com.fiap.aluno.projeto.parquimetro.repository.VeiculoRepository;
 import com.fiap.aluno.projeto.parquimetro.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -29,10 +31,12 @@ public class VeiculoServiceImpl implements VeiculoService {
     @Autowired
     private BilheteRepository bilheteRepository;
 
+
     @Override
-    public List<Veiculo> obterTodos() {
-        return this.veiculoRepository.findAll();
+    public Page<Veiculo> findAll(Pageable pageable) {
+        return this.veiculoRepository.findAll(pageable);
     }
+
 
     @Override
     public Veiculo obterPorPlaca(String placa) {
@@ -40,6 +44,8 @@ public class VeiculoServiceImpl implements VeiculoService {
                 .findById(placa)
                 .orElseThrow(()-> new IllegalArgumentException("Veiculo não existe"));
     }
+
+
 
     @Override
     public Veiculo criar(Veiculo veiculo) {

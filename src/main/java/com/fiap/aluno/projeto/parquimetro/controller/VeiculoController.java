@@ -3,6 +3,9 @@ package com.fiap.aluno.projeto.parquimetro.controller;
 import com.fiap.aluno.projeto.parquimetro.model.Veiculo;
 import com.fiap.aluno.projeto.parquimetro.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +18,9 @@ public class VeiculoController {
     private VeiculoService veiculoService;
 
     @GetMapping
-    public List<Veiculo> obterTodos(){
-        return this.veiculoService.obterTodos();
+    public ResponseEntity<Page<Veiculo>> findAll(Pageable pageable){
+        Page<Veiculo> veiculos = this.veiculoService.findAll(pageable);
+        return ResponseEntity.ok(veiculos);
     }
 
     @GetMapping("/{placa}")
