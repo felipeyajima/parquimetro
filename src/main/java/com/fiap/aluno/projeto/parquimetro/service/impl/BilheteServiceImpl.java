@@ -69,7 +69,7 @@ public class BilheteServiceImpl implements BilheteService {
             this.veiculoService.criar(veiculo1);
         }
 
-
+        bilhete.setBilheteCompradoEm(LocalDateTime.now());
         Bilhete obj = this.bilheteRepository.save(bilhete);
 
         //String IdBilhete = bilhete.getCodigo();
