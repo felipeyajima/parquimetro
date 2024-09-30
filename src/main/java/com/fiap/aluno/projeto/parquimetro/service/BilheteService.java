@@ -17,6 +17,10 @@ public interface BilheteService {
 
     public void deleteById(String codigo);
 
+
+    public void compraDeHorasAdicionais(String codigo, int horas);
+
+
     public Bilhete findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(String placa, LocalDateTime data);
 
     public List<Bilhete> obterBilhetesPrestesAExpirar(LocalDateTime de, LocalDateTime ate);

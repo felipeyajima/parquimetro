@@ -56,6 +56,13 @@ public class BilheteController {
     }
 
 
+    @PutMapping("/compradehoras")
+    public void compraDeHorasAdicionais(@RequestParam("codigo") String codigo, @RequestParam("horasadicionais") int horasadicionais){
+        this.bilheteService.compraDeHorasAdicionais(codigo, horasadicionais);
+    }
+
+
+
     @GetMapping("/bilhetes-ordenados-data")
     public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(@RequestParam("cpf") String cpfDoCliente){
         return this.bilheteService.findByCpfDoClienteOrderByBilheteCompradoEmAsc(cpfDoCliente);

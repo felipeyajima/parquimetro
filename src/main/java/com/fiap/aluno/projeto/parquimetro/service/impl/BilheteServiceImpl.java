@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BilheteServiceImpl implements BilheteService {
@@ -92,6 +93,43 @@ public class BilheteServiceImpl implements BilheteService {
         Query query = new Query(Criteria.where("codigo").is(codigo));
         mongoTemplate.remove(query, Bilhete.class);
     }
+
+    @Override
+    public void compraDeHorasAdicionais(String codigo, int horas) {
+
+        this.bilheteRepository
+                .findById(codigo)
+                .orElseThrow(()-> new ControllerNotFoundException("bilhete não existe"));
+
+        Optional<Bilhete> bilhete = this.bilheteRepository.findById(codigo);
+
+        if(bilhete != null){
+            codigo = bilhete.orElseThrow(RuntimeException::new).getCodigo();
+            Veiculo veiculo = bilhete.orElseThrow(RuntimeException::new).getVeiculo();
+            LocalDateTime hora = bilhete.orElseThrow(RuntimeException::new).getBilheteCompradoEm();
+            String cpf = bilhete.orElseThrow(RuntimeException::new).getCpfDoCliente();
+            String numero = bilhete.orElseThrow(RuntimeException::new).getNumeroDeTelefoneDoCliente();
+
+            int horaFinal = bilhete.orElseThrow(RuntimeException::new).getQuantidadeDeHorasAdquiridas() + horas;
+
+
+            Bilhete obj = new Bilhete();
+            obj.setCodigo(codigo);
+            obj.setQuantidadeDeHorasAdquiridas(horaFinal);
+            obj.setVeiculo(veiculo);
+            obj.setBilheteCompradoEm(hora);
+            obj.setCpfDoCliente(cpf);
+            obj.setNumeroDeTelefoneDoCliente(numero);
+
+            this.bilheteRepository.save(obj);
+
+
+        } else {
+            throw new ControllerNotFoundException("bilhete não existe");
+        }
+    }
+
+
 
     // estamos utilizando uma nova forma de consulta utilizando Query Methods
     @Override
