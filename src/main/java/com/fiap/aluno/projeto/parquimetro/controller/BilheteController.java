@@ -39,7 +39,7 @@ public class BilheteController {
     public void atualizar(@RequestBody Bilhete bilhete){
         this.bilheteService.atualizar(bilhete);
     }
-    
+
 
     @DeleteMapping("/{codigo}")
     public void deleteBilhete(@PathVariable String codigo){

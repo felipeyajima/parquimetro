@@ -1,5 +1,6 @@
 package com.fiap.aluno.projeto.parquimetro.service.impl;
 
+import com.fiap.aluno.projeto.parquimetro.controller.exception.ControllerNotFoundException;
 import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
 import com.fiap.aluno.projeto.parquimetro.model.Veiculo;
 import com.fiap.aluno.projeto.parquimetro.repository.BilheteRepository;
@@ -42,7 +43,7 @@ public class VeiculoServiceImpl implements VeiculoService {
     public Veiculo obterPorPlaca(String placa) {
         return this.veiculoRepository
                 .findById(placa)
-                .orElseThrow(()-> new IllegalArgumentException("Veiculo não existe"));
+                .orElseThrow(()-> new ControllerNotFoundException("Veiculo não existe"));
     }
 
 
