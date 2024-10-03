@@ -32,4 +32,6 @@ public interface BilheteRepository extends MongoRepository<Bilhete, String> {
 
     public List<Bilhete> findByCpfDoClienteOrderByBilheteCompradoEmAsc(String cpfDoCliente);
 
+
+
 }

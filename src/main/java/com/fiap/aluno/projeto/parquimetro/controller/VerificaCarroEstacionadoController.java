@@ -1,12 +1,9 @@
 package com.fiap.aluno.projeto.parquimetro.controller;
 
-import com.fiap.aluno.projeto.parquimetro.model.Bilhete;
-import com.fiap.aluno.projeto.parquimetro.service.BilheteService;
+import com.fiap.aluno.projeto.parquimetro.model.Veiculo;
+import com.fiap.aluno.projeto.parquimetro.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -15,16 +12,36 @@ import java.time.LocalDateTime;
 public class VerificaCarroEstacionadoController {
 
     @Autowired
-    private BilheteService bilheteService;
+    private VeiculoService veiculoService;
 
 
-    // estamos utilizando uma nova forma de consulta utilizando Query Methods
+
     @GetMapping
-    public Bilhete findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(
-            @RequestParam("placa") String placa,
-            @RequestParam("data") LocalDateTime data
+    public Veiculo obterPorPlaca(
+            @RequestParam("placa") String placa
     ){
-        return this.bilheteService.findByVeiculoPlacaAndBilheteCompradoEmGreaterThan(placa, data);
+
+        LocalDateTime horaDaVerificacao = LocalDateTime.now();
+
+        Veiculo veiculo = this.veiculoService.obterPorPlaca(placa);
+
+        LocalDateTime horaDaCompraDoBilhete = veiculo.getUltimoBilheteValido().getBilheteCompradoEm();
+        Long horasCompradas = Long.valueOf(veiculo.getUltimoBilheteValido().getQuantidadeDeHorasAdquiridas());
+
+        LocalDateTime vencimentoBilhete = horaDaCompraDoBilhete.plusHours(horasCompradas);
+
+        System.out.println("vencimento do bilhete é: " + vencimentoBilhete);
+
+        if(vencimentoBilhete.isBefore(horaDaVerificacao)){
+            System.out.println("multa emitida");
+            // emite multa
+        } else {
+            // nao emite multa
+            System.out.println("multa nao emitida");
+        }
+
+
+        return null;
     }
 
 }
