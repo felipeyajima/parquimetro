@@ -15,8 +15,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class BilheteServiceImpl implements BilheteService {
@@ -65,9 +67,38 @@ public class BilheteServiceImpl implements BilheteService {
         } else {
             //veiculoExistente = false;
             // senao, crie um veiculo pois nao atualizamos com as informacoes atualizadas do departamento de transito para veiculo novos
+
+            ArrayList<String> cars = new ArrayList<String>();
+            cars.add("Virtus");
+            cars.add("Polo");
+            cars.add("Taos");
+            cars.add("Saveiro");
+            cars.add("Gol");
+            cars.add("Up");
+            cars.add("Jetta");
+            Random rndm = new Random();
+            String modelo = cars.get(rndm.nextInt(cars.size()));
+
+            ArrayList<String> cor = new ArrayList<String>();
+            cor.add("Prata");
+            cor.add("Preto");
+            cor.add("Branco");
+            cor.add("Vermelho");
+            cor.add("Azul");
+            Random rndm1 = new Random();
+            String color = cor.get(rndm1.nextInt(cor.size()));
+
+
             Veiculo veiculo1 = new Veiculo();
-            veiculo1.setPlaca(bilhete.getVeiculo().getPlaca());
+            veiculo1.setPlaca(bilhete.getVeiculo().getPlaca().toUpperCase());
+            veiculo1.setMarca("Volkswagen");
+            veiculo1.setModelo(modelo);
+            veiculo1.setCor(color);
+            veiculo1.setChassi("SDFWEEFKDJFKDJKJEKJDF");
+            veiculo1.setAnoDeFabricacao("2022");
             this.veiculoService.criar(veiculo1);
+
+            bilhete.setVeiculo(veiculo1);
         }
 
         bilhete.setBilheteCompradoEm(LocalDateTime.now());
