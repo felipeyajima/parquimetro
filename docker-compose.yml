@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  parquimetro-app:
+    build: .
+    container_name: "docker-app"
+    ports:
+      - 8080:8080
+  mongodb:
+    image: mongo:8.0.0
+    container_name: "mongodb"
+    ports:
+      - 27070:27017
