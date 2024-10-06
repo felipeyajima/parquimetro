@@ -44,13 +44,7 @@ Para acessar as APIs, basta usar alguma ferramenta de chamadas como Postman ou I
 ## 2 - Executando o código direto no computador por meio do Intellij
 
 Para executar o código Java direto pelo IDE Intellij, baixe o projeto do repositório do github, e na pasta raíz "parquimetro" (onde está o arquivo pom.xml). 
-Baixe as dependências necessárias por meio do utilitário Maven, e altere no arquivo **src/main/resources/applications.properties** a seguinte linha:
-
-de:
-> spring.data.mongodb.uri=mongodb://mongodb/parquimetro-spring
-
-para:
-> spring.data.mongodb.uri=mongodb://localhost/parquimetro-spring
+Baixe as dependências necessárias por meio do utilitário Maven e execute o código a partir da ParquimetroApplication.
 
 O acesso à API estará disponível no seguinte endereço: http://localhost:8080
 
