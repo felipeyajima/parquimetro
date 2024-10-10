@@ -16,10 +16,11 @@ public class VerificaCarroEstacionadoController {
     private VerificacaoService verificacaoService;
 
     @GetMapping
-    public void verificao(
-            @RequestParam("placa") String placa
+    public String verificao(
+            @RequestParam("placa") String placa,
+            @RequestParam("cep") String cep
     ){
-        this.verificacaoService.verifica(placa);
+        return this.verificacaoService.verifica(placa, cep);
 
     }
 

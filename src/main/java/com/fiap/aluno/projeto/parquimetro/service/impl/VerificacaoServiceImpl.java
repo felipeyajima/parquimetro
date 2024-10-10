@@ -8,6 +8,7 @@ import com.fiap.aluno.projeto.parquimetro.service.VerificacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -19,8 +20,9 @@ public class VerificacaoServiceImpl implements VerificacaoService {
     @Autowired
     private InfracaoService infracaoService;
 
+
     @Override
-    public void verifica(String placa) {
+    public String verifica(String placa, String cep) {
         LocalDateTime horaDaVerificacao = LocalDateTime.now();
 
         Veiculo veiculo = this.veiculoService.obterPorPlaca(placa);
@@ -33,22 +35,37 @@ public class VerificacaoServiceImpl implements VerificacaoService {
         System.out.println("vencimento do bilhete é: " + vencimentoBilhete);
 
         if(vencimentoBilhete.isBefore(horaDaVerificacao)){
-            System.out.println("multa emitida");
-
-            Veiculo veiculo1 = new Veiculo();
-            veiculo1.setPlaca(placa);
+            String msg = "Veículo irregular, multa emitida";
 
 
-            Infracao infracao = new Infracao();
-            infracao.setVeiculo(veiculo1);
-            infracao.setValorDaMulta(1000.0);
-            infracao.setCepDoLocalDaInfracao("10000-000");
+            LocalDateTime de = LocalDate.now().atTime(0, 0);
+            LocalDateTime ate = LocalDate.now().atTime(23, 59);
 
-            this.infracaoService.criar(infracao);
+            Infracao infracaoNoDia = this.infracaoService.obterInfracoesNoDiaECepPorPlaca(cep, placa, de, ate);
+
+            if(infracaoNoDia == null){
+                Veiculo veiculo1 = new Veiculo();
+                veiculo1.setPlaca(placa);
+
+
+                Infracao infracao = new Infracao();
+                infracao.setVeiculo(veiculo1);
+                infracao.setValorDaMulta(99.0);
+                infracao.setCepDoLocalDaInfracao(cep);
+
+                this.infracaoService.criar(infracao);
+
+                return msg;
+
+            } else {
+                return "veiculo com multa já atrelada neste mesmo cep e dia";
+            }
+
 
         } else {
             // nao emite multa
-            System.out.println("multa nao emitida");
+            String msg = "Veículo regular";
+            return msg;
         }
     }
 }

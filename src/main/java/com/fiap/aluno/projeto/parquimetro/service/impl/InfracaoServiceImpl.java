@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class InfracaoServiceImpl implements InfracaoService {
@@ -56,4 +57,12 @@ public class InfracaoServiceImpl implements InfracaoService {
         Query query = new Query(Criteria.where("codigo").is(codigo));
         mongoTemplate.remove(query, Infracao.class);
     }
+
+    @Override
+    public Infracao obterInfracoesNoDiaECepPorPlaca(String cep, String placa, LocalDateTime de, LocalDateTime ate){
+
+        return this.infracaoRepository.obterInfracoesNoDiaECepPorPlaca(cep, placa, de, ate);
+    }
+
+
 }

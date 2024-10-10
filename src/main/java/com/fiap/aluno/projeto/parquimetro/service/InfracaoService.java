@@ -5,6 +5,9 @@ import com.fiap.aluno.projeto.parquimetro.model.Veiculo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public interface InfracaoService {
 
     Page<Infracao> findAll(Pageable pageable);
@@ -16,6 +19,8 @@ public interface InfracaoService {
     public void atualizar(Infracao infracao);
 
     public void deleteById(String codigo);
+
+    public Infracao obterInfracoesNoDiaECepPorPlaca(String cep, String placa, LocalDateTime de, LocalDateTime ate);
 
 
 }
