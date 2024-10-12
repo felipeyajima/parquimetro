@@ -36,10 +36,12 @@ A API estará disponível no seu computador no endereço http://localhost:8080/
 
 ## 2 - Executando o código direto no computador por meio do Intellij
 
-Para executar o código Java direto pelo IDE Intellij, baixe o projeto do repositório do github, e na pasta raíz "parquimetro" (onde está o arquivo pom.xml). 
+Para executar o código Java direto pelo IDE Intellij, baixe o projeto do repositório do github, e abra na pasta raíz "parquimetro" (onde está o arquivo pom.xml). 
 Baixe as dependências necessárias por meio do utilitário Maven e execute o código a partir da ParquimetroApplication.
 
 O acesso à API estará disponível no seguinte endereço: http://localhost:8080
+
+Obs: Necessita de uma instância do MongoDB 8.0.0 rodando em sua máquina.
 
 
 ## 3 - Executando o código em algum servidor
@@ -47,4 +49,5 @@ O acesso à API estará disponível no seguinte endereço: http://localhost:8080
 A imagem buildada do código está disponível no seguinte repositório do Docker Hub: felipebatista765/parquimetro:latest
 
 Faz-se necessário alterar o endereço do banco de dados MongoDB para o IP do Banco que você tem disponível no seu ambiente através da substituição das variáveis de ambiente chamada: **spring.data.mongodb.uri**
+ex: spring.data.mongodb.uri=mongodb://localhost/parquimetro-spring para spring.data.mongodb.uri=mongodb://IP-SERVIDOR-MONGODB/parquimetro-spring
 
