@@ -1,0 +1,9 @@
+mvn clean install
+mvn clean package
+
+docker build . -t felipebatista765/parquimetro:latest -t felipebatista765/parquimetro:v0.0.5
+
+docker push felipebatista765/parquimetro:v0.0.5
+docker push felipebatista765/parquimetro:latest
+
+docker-compose up -d

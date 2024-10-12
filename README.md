@@ -12,32 +12,25 @@ Nesta fase, o tema para o projeto foi o re-desenvolvimento de um sistema de parq
 - Java JDK Zulu 17
 - Maven
 
-|      Entidades          |Controller          |...                         |
+|      Entidades          | Path          | collection - mongodb                         |
 |----------------|-------------------------------|-----------------------------|
-|Veiculo		 |`'{veiculos}'`            |''            |
-|Bilhete         |`"{bilhetes}"`            |''         |
-|Infração        |`"{infracoes}"`			|''|
+|Veiculo		 |`'/veiculos'`            |'veiculo'            |
+|Bilhete         |`'/bilhetes'`            |'bilhete'         |
+|Infração        |`'infracoes'`			|'infracao'  |
 
 
 
-## 1 - Como Executar o código usando o Docker Compose
+## 1 - Como Executar o código usando o Docker Compose "RECOMENDADO"
 
-Para este projeto, existem algumas formas diferentes de executar o código, o mais indicado é usando o **Docker Compose**, pois em uma única execução, já entrega tanto o **código do Spring** como também o **MongoDB** funcionando e se comunicando diretamente. 
+Para este projeto, existem algumas formas diferentes de executar o código, o mais indicado é usando o **Docker Compose**, pois em uma única execução, já entrega tanto o **código a partir da imagem containerizada** como também o **MongoDB** funcionando e se comunicando diretamente.
 
-Ao baixar o projeto do git para sua máquina, vá até o diretório raíz "parquimetro" (onde estão os arquivos pom.xml, Dockerfile, etc.)  e execute os seguintes comandos:
+pre-requisitos: Docker e Docker-Compose instalado na sua máquina
 
-O Comando abaixo irá buildar o projeto e gerar um arquivo .jar, que usaremos na criação da imagem docker
-> mvn clean install
+-Baixe apenas o arquivo docker-compose.yaml
 
-O Comando abaixo irá criar toda estrutura dos containers se comunicando
-> docker-compose build
+-Na mesma pasta onde o arquivo foi baixado, execute o comando: **docker-compose up -d**
 
-E por fim, o comando abaixo irá iniciar os containers
-> docker-compose up -d
-
-
-Para acessar as APIs, basta usar alguma ferramenta de chamadas como Postman ou Insomnia no seguinte endereço: http://localhost:8080
-
+A API estará disponível no seu computador no endereço http://localhost:8080/
 
 
 
@@ -48,8 +41,10 @@ Baixe as dependências necessárias por meio do utilitário Maven e execute o c�
 
 O acesso à API estará disponível no seguinte endereço: http://localhost:8080
 
+
 ## 3 - Executando o código em algum servidor
 
 A imagem buildada do código está disponível no seguinte repositório do Docker Hub: felipebatista765/parquimetro:latest
 
 Faz-se necessário alterar o endereço do banco de dados MongoDB para o IP do Banco que você tem disponível no seu ambiente através da substituição das variáveis de ambiente chamada: **spring.data.mongodb.uri**
+
