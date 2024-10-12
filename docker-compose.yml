@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   parquimetro-app:
-    image: felipebatista765/parquimetro:v0.0.4
+    image: felipebatista765/parquimetro:latest
     container_name: "docker-app"
     ports:
       - 8080:8080
